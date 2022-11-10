@@ -64,7 +64,7 @@ const TodoFormComponent = (props: { data?: ITodo }) => {
 							</Form.Group>
 						</Col>
 						<Col>
-							<Form.Group className="mb-3" controlId="input-status">
+							<Form.Group className="mb-3" controlId="input-priority">
 								<Form.Label>Priority</Form.Label>
 								<Form.Select {...register("priority")}>
 									<option value="high">High</option>
@@ -78,10 +78,10 @@ const TodoFormComponent = (props: { data?: ITodo }) => {
 						<Form.Check {...register("isFinished")} type="checkbox" label="Finished" />
 					</Form.Group>
 					<Col className='d-flex justify-content-between'>
-						<Button variant="primary" type="submit" disabled={loading}>
+						<Button data-cy="submit" variant="primary" type="submit" disabled={loading}>
 							Submit
 						</Button>
-						<Button variant="secondary" type="button" onClick={() => router.back()}>
+						<Button data-cy="back" variant="secondary" type="button" onClick={() => router.back()}>
 							Back
 						</Button>
 					</Col>

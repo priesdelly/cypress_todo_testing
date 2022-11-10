@@ -19,10 +19,10 @@ export default function Home(prop: { data: ITodo[] }) {
           <div className="d-flex justify-content-between my-4">
             <h4>Todo</h4>
             <Link href="todo/add">
-              <Button variant="success" size='sm'>Add</Button>
+              <Button data-testid="btn-add" variant="success" size='sm'>Add</Button>
             </Link>
           </div>
-          <Table striped bordered hover>
+          <Table data-testid="table" striped bordered hover>
             <thead>
               <tr>
                 <th>#</th>
