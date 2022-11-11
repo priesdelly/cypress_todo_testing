@@ -21,12 +21,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 			if (!bodyData.title) {
 				errorMessage.push({ message: 'Title is required.' });
 			}
+
+			if (bodyData.title && bodyData.title.length > 50) {
+				errorMessage.push({ message: 'Length of title must less than 50 character.' });
+			}
+
+			if (bodyData.note && bodyData.note.length > 144) {
+				errorMessage.push({ message: 'Length of note must less than 144 character.' });
+			}
+
 			if (!bodyData.dueDate) {
 				errorMessage.push({ message: 'Due date is required.' });
 			}
+
+			if (bodyData.dueDate && new Date(new Date().toDateString()) > new Date(new Date(bodyData.dueDate).toDateString())) {
+				errorMessage.push({ message: 'Due date must be after today.' });
+			}
+
 			if (!bodyData.priority) {
 				errorMessage.push({ message: 'Priority is required.' });
 			}
+
 			if (errorMessage.length > 0) {
 				res.status(400).json(errorMessage);
 				break;

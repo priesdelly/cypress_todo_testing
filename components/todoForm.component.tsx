@@ -46,7 +46,7 @@ const TodoFormComponent = (props: { data?: ITodo }) => {
 						<Col>
 							<Form.Group className="mb-3" controlId="input-title">
 								<Form.Label>Title</Form.Label>
-								<Form.Control type="text" maxLength={50} placeholder="Title" {...register("title")} />
+								<Form.Control type="text" placeholder="Title" {...register("title")} />
 							</Form.Group>
 						</Col>
 					</Row>
@@ -74,7 +74,7 @@ const TodoFormComponent = (props: { data?: ITodo }) => {
 							</Form.Group>
 						</Col>
 					</Row>
-					<Form.Group className="mb-3" controlId="formBasicCheckbox">
+					<Form.Group className="mb-3" controlId="input-isFinished">
 						<Form.Check {...register("isFinished")} type="checkbox" label="Finished" />
 					</Form.Group>
 					<Col className='d-flex justify-content-between'>
@@ -85,7 +85,7 @@ const TodoFormComponent = (props: { data?: ITodo }) => {
 							Back
 						</Button>
 					</Col>
-					<Row className='invalid mt-3'>
+					<Row data-testid="invalid-label" className='invalid mt-3'>
 						{
 							error.map((err, i) => <span key={i}>{err.message}</span>)
 						}

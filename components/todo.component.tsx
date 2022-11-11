@@ -15,7 +15,7 @@ const TodoComponent = (prop: { data: ITodo, index: number }) => {
 	}
 
 	return (
-		<tr>
+		<tr data-testid={'tr-' + prop.data.id}>
 			<td>{prop.index}</td>
 			<td>{prop.data.title}</td>
 			<td>{prop.data.note}</td>
@@ -23,9 +23,9 @@ const TodoComponent = (prop: { data: ITodo, index: number }) => {
 			<td>{prop.data.priority}</td>
 			<td>{prop.data.isFinished === true ? <Badge bg="success">Finished</Badge> : <Badge bg="danger">Todo</Badge>}</td>
 			<td>
-				<Link href={'todo/' + prop.data.id}><Button size="sm" variant='secondary'>Edit</Button></Link>
+				<Link href={'todo/' + prop.data.id}><Button data-testid={'btn-edit-' + prop.data.id} size="sm" variant='secondary'>Edit</Button></Link>
 			</td>
-			<td><Button size="sm" variant='danger' onClick={() => onDelete()}>Delete</Button></td>
+			<td><Button data-testid={'btn-delete-' + prop.data.id} size="sm" variant='danger' onClick={() => onDelete()}>Delete</Button></td>
 		</tr>
 	)
 }
