@@ -9,8 +9,8 @@ import axios from '../lib/axios.config';
 const TodoFormComponent = (props: { data?: ITodo }) => {
 	const router = useRouter();
 	const { register, handleSubmit, formState: { errors }, setValue } = useForm();
-	const now = new Date();
-	const maxDate = new Date(now.getFullYear() + 5, now.getMonth(), now.getDate());
+	// const now = new Date();
+	// const maxDate = new Date(now.getFullYear() + 5, now.getMonth(), now.getDate());
 	const [error, setError] = useState<{ message: string }[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
 	const onSubmit = (data: any) => {
@@ -60,7 +60,7 @@ const TodoFormComponent = (props: { data?: ITodo }) => {
 						<Col>
 							<Form.Group className="mb-3" controlId="input-due-date">
 								<Form.Label>Due date</Form.Label>
-								<Form.Control type="date" placeholder="Due date" max={maxDate.toISOString().slice(0, 10)} {...register("dueDate")} />
+								<Form.Control disabled={props.data !== undefined} type="date" placeholder="Due date" {...register("dueDate")} />
 							</Form.Group>
 						</Col>
 						<Col>

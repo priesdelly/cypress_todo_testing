@@ -31,12 +31,23 @@ export default async function userHandler(req: NextApiRequest, res: NextApiRespo
 					if (!bodyData.title) {
 						errorMessage.push({ message: 'Title is required.' });
 					}
+
+					if (bodyData.title && bodyData.title.length > 50) {
+						errorMessage.push({ message: 'Length of title must less than 50 character.' });
+					}
+
+					if (bodyData.note && bodyData.note.length > 144) {
+						errorMessage.push({ message: 'Length of note must less than 144 character.' });
+					}
+
 					if (!bodyData.dueDate) {
 						errorMessage.push({ message: 'Due date is required.' });
 					}
+
 					if (!bodyData.priority) {
 						errorMessage.push({ message: 'Priority is required.' });
 					}
+
 					if (errorMessage.length > 0) {
 						res.status(400).json(errorMessage);
 						break;
