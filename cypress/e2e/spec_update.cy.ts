@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import fixture from '../fixtures/data.json';
 import { ITodo } from '../../interfaces/todo.interface';
 
-context('Test edit todo invalid', () => {
+context('Test edit todo', () => {
   let data: ITodo;
 
   const today = new Date();
