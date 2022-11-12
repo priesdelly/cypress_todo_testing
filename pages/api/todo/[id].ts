@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import AppDataSource from "../../../lib/database";
 import { Todo } from "../../../models/todo";
+import { af } from "date-fns/locale";
 
 export default async function userHandler(req: NextApiRequest, res: NextApiResponse) {
 	if (!AppDataSource.isInitialized) {
@@ -8,7 +9,7 @@ export default async function userHandler(req: NextApiRequest, res: NextApiRespo
 	}
 
 	const { query: { id }, method } = req;
-
+	
 	switch (method) {
 		case 'GET':
 			try {
@@ -25,7 +26,8 @@ export default async function userHandler(req: NextApiRequest, res: NextApiRespo
 		case 'PUT':
 			try {
 				const data = await AppDataSource.getRepository(Todo).findOneBy({ id: Number(id) });
-				if (data) {
+				if (data) { 
+
 					const bodyData = req.body as Todo;
 					const errorMessage: { message: string }[] = [];
 					if (!bodyData.title) {
@@ -42,6 +44,23 @@ export default async function userHandler(req: NextApiRequest, res: NextApiRespo
 
 					if (!bodyData.dueDate) {
 						errorMessage.push({ message: 'Due date is required.' });
+					} else { 
+						let dateObject = new Date(bodyData.dueDate);
+						dateObject.setUTCHours(17) //Bangkok 
+
+						let today = new Date();
+						today.setUTCHours(0)
+						today.setHours(0, 0, 0, 0);
+
+						let after5Year = new Date();
+						after5Year.setHours(0, 0, 0, 0);
+						after5Year.setFullYear(after5Year.getFullYear() + 5); 
+						
+						if (dateObject < today) {
+							errorMessage.push({ message: 'Due date must be after today.' }); 
+						} else if (dateObject > after5Year) { 
+							errorMessage.push({ message: 'Due date must not over 5 years from today.' });
+						}
 					}
 
 					if (!bodyData.priority) {

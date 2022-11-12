@@ -32,17 +32,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 			if (!bodyData.dueDate) {
 				errorMessage.push({ message: 'Due date is required.' });
-			}
+			} else { 
+				let dateObject = new Date(bodyData.dueDate);
+				dateObject.setUTCHours(17) //Bangkok 
 
-			const now = new Date();
-			if (bodyData.dueDate && new Date(now.toDateString()) > new Date(new Date(bodyData.dueDate).toDateString())) {
-				errorMessage.push({ message: 'Due date must be after today.' });
-			}
+				let today = new Date();
+				today.setUTCHours(0)
+				today.setHours(0, 0, 0, 0);
 
-			const dateAfter5years = new Date();
-			dateAfter5years.setFullYear(now.getFullYear() + 5);
-			if (bodyData.dueDate && new Date(new Date(bodyData.dueDate).toDateString()) > dateAfter5years) {
-				errorMessage.push({ message: 'Due date must not over 5 years from today.' });
+				let after5Year = new Date();
+				after5Year.setHours(0, 0, 0, 0);
+				after5Year.setFullYear(after5Year.getFullYear() + 5); 
+				
+				if (dateObject < today) {
+					errorMessage.push({ message: 'Due date must be after today.' }); 
+				} else if (dateObject > after5Year) { 
+					errorMessage.push({ message: 'Due date must not over 5 years from today.' });
+				}
 			}
 
 			if (!bodyData.priority) {
