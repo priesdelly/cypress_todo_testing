@@ -46,16 +46,18 @@ export default async function userHandler(req: NextApiRequest, res: NextApiRespo
 						errorMessage.push({ message: 'Due date is required.' });
 					} else { 
 						let dateObject = new Date(bodyData.dueDate);
-						dateObject.setUTCHours(17) //Bangkok 
+						dateObject.setHours(0, 0, 0, 0);
 
 						let today = new Date();
-						today.setUTCHours(0)
 						today.setHours(0, 0, 0, 0);
 
 						let after5Year = new Date();
 						after5Year.setHours(0, 0, 0, 0);
 						after5Year.setFullYear(after5Year.getFullYear() + 5); 
 						
+						console.log('todate: ' + today);
+						console.log('object date: ' + dateObject);
+
 						if (dateObject < today) {
 							errorMessage.push({ message: 'Due date must be after today.' }); 
 						} else if (dateObject > after5Year) { 

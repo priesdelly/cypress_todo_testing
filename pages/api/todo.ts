@@ -34,10 +34,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 				errorMessage.push({ message: 'Due date is required.' });
 			} else { 
 				let dateObject = new Date(bodyData.dueDate);
-				dateObject.setUTCHours(17) //Bangkok 
+				dateObject.setHours(0, 0, 0, 0);
 
 				let today = new Date();
-				today.setUTCHours(0)
 				today.setHours(0, 0, 0, 0);
 
 				let after5Year = new Date();
