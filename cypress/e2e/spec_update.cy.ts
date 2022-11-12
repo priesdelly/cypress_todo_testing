@@ -313,4 +313,16 @@ context('Test edit todo invalid', () => {
       );
     });
   });
+
+  describe('Set to finish task', () => {
+    it('Visit to do list', () => {
+      cy.visit('http://localhost:3000/');
+    });
+
+    it('Tick finish', () => {
+      goEdit();
+      cy.get('#input-isFinished').check();
+      submitSuccess();
+    });
+  });
 });
