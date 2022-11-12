@@ -60,7 +60,7 @@ const TodoFormComponent = (props: { data?: ITodo }) => {
 						<Col>
 							<Form.Group className="mb-3" controlId="input-due-date">
 								<Form.Label>Due date</Form.Label>
-								<Form.Control disabled={props.data !== undefined} type="date" placeholder="Due date" {...register("dueDate")} />
+								<Form.Control /**disabled={props.data !== undefined}**/ type="date" placeholder="Due date" {...register("dueDate")} />
 							</Form.Group>
 						</Col>
 						<Col>
