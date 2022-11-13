@@ -25,7 +25,7 @@ const TodoComponent = (prop: { data: ITodo, index: number }) => {
 			<td>
 				<Link href={'todo/' + prop.data.id}><Button data-testid={'btn-edit-' + prop.data.id} size="sm" variant='secondary'>Edit</Button></Link>
 			</td>
-			<td><Button data-testid={'btn-delete-' + prop.data.id} size="sm" variant='danger' onClick={() => onDelete()}>Delete</Button></td>
+			<td><Button data-testid={'btn-delete-' + prop.data.id} size="sm" variant='danger' onClick={() => onDelete()} className={'btn-delete'} >Delete</Button></td>
 		</tr>
 	)
 }
