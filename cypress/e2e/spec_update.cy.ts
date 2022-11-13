@@ -115,7 +115,7 @@ context('Test edit todo', () => {
         .should('exist');
     });
 
-    it('Title add 51 character', () => {
+    it('Title add 51 characters', () => {
       cy.get('#input-title').type(fixture.character_51);
       submitFail();
       cy.get('[data-testid="invalid-label"]')
@@ -128,39 +128,39 @@ context('Test edit todo', () => {
   });
 
   describe('Valid title', () => {
-    it('Back to to do list', () => {
+    it('Visit to to do list', () => {
       cy.visit('http://localhost:3000/');
     });
 
-    it('Title add 1 character', () => {
+    it.only('Title add 1 characters', () => {
       goEdit();
       cy.get('#input-title').clear();
       cy.get('#input-title').type(fixture.character_1);
       submitSuccess();
     });
 
-    it('Title add 2 character', () => {
+    it('Title add 2 characters', () => {
       goEdit();
       cy.get('#input-title').clear();
       cy.get('#input-title').type(fixture.character_2);
       submitSuccess();
     });
 
-    it('Title add 25 character', () => {
+    it('Title add 25 characters', () => {
       goEdit();
       cy.get('#input-title').clear();
       cy.get('#input-title').type(fixture.character_25);
       submitSuccess();
     });
 
-    it('Title add 49 character', () => {
+    it('Title add 49 characters', () => {
       goEdit();
       cy.get('#input-title').clear();
       cy.get('#input-title').type(fixture.character_49);
       submitSuccess();
     });
 
-    it('Title add 50 character', () => {
+    it('Title add 50 characters', () => {
       goEdit();
       cy.get('#input-title').clear();
       cy.get('#input-title').type(fixture.character_50);
@@ -173,7 +173,7 @@ context('Test edit todo', () => {
       cy.visit('http://localhost:3000/');
     });
 
-    it('Note add 145 character', () => {
+    it('Note add 145 characters', () => {
       goEdit();
       cy.get('#input-note').type(fixture.character_145);
       submitFail();
@@ -188,35 +188,35 @@ context('Test edit todo', () => {
       cy.visit('http://localhost:3000/');
     });
 
-    it('Note add 1 character', () => {
+    it('Note add 1 characters', () => {
       goEdit();
       cy.get('#input-note').clear();
       cy.get('#input-note').type(fixture.character_1);
       submitSuccess();
     });
 
-    it('Note add 2 character', () => {
+    it('Note add 2 characters', () => {
       goEdit();
       cy.get('#input-note').clear();
       cy.get('#input-note').type(fixture.character_2);
       submitSuccess();
     });
 
-    it('Note add 72 character', () => {
+    it('Note add 72 characters', () => {
       goEdit();
       cy.get('#input-note').clear();
       cy.get('#input-note').type(fixture.character_72);
       submitSuccess();
     });
 
-    it('Note add 143 character', () => {
+    it('Note add 143 characters', () => {
       goEdit();
       cy.get('#input-note').clear();
       cy.get('#input-note').type(fixture.character_143);
       submitSuccess();
     });
 
-    it('Note add 144 character', () => {
+    it('Note add 144 characters', () => {
       goEdit();
       cy.get('#input-note').clear();
       cy.get('#input-note').type(fixture.character_144);
