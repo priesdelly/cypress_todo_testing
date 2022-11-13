@@ -54,10 +54,7 @@ export default async function userHandler(req: NextApiRequest, res: NextApiRespo
 						let after5Year = new Date();
 						after5Year.setHours(0, 0, 0, 0);
 						after5Year.setFullYear(after5Year.getFullYear() + 5); 
-						
-						console.log('todate: ' + today);
-						console.log('object date: ' + dateObject);
-
+	
 						if (dateObject < today) {
 							errorMessage.push({ message: 'Due date must be after today.' }); 
 						} else if (dateObject > after5Year) { 
